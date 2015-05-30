@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cool = require('cool-ascii-faces');
 var YT = require('./sources/YouTubeAPI.js');
+var parser = require('./sources/PlaylistParser.js');
 var user = null;
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -31,10 +32,11 @@ app.get('/user', function(request, response) {
 	  if(error) {
 	  	response.send(result);
 	  } else { 
-	  	response.send(result);
+	  	parser.Parser(result,function(parsedData){
+	  	response.send(parsedData);
+	  	});
 	  }	
 	})
-	
 });
 
 app.get('/callGoogle', function(req, res){

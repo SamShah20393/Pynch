@@ -83,4 +83,22 @@ exports.YouTubeGetPlaylist = function(authToken,callback){
               });
 }
 
+exports.Playlist = function(authToken,callback){
+  console.log ("Getting playlists");
+  apiURL=baseURL_API+"/playlists?"
+                +"part=snippet&"
+                +"mine=true&"
+                +"access_token="+authToken;
+  console.log  (apiURL);
+  request(apiURL, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                  callback(null,body);
+                } else {
+                  callback(true,body);
+                }
+              });
+}
+
+
+
 
