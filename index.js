@@ -32,8 +32,9 @@ app.get('/user', function(request, response) {
 	  if(error) {
 	  	response.send(result);
 	  } else { 
-	  	parser.Parser(result,function(parsedData){
-	  	response.send(parsedData);
+	  	parser.YouTubeParser(result,function(parsedData){
+
+	  		response.send(parsedData.title);
 	  	});
 	  }	
 	})
